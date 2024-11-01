@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllEmployees>
+        SELECT * FROM employees;
+    </getAllEmployees>
+
+    <getEmployeeById>
+        SELECT * FROM employees WHERE employee_id = ?;
+    </getEmployeeById>
+
+    <createEmployee>
+        INSERT INTO employees (name, email, phone, role, department, date_of_joining, salary, leave_balance, password)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    </createEmployee>
+
+    <updateEmployee>
+        UPDATE employees 
+        SET name = ?, email = ?, phone = ?, role = ?, department = ?, date_of_joining = ?, salary = ?, leave_balance = ?
+        WHERE employee_id = ?;
+    </updateEmployee>
+
+    <deleteEmployee>
+        DELETE FROM employees WHERE employee_id = ?;
+    </deleteEmployee>
+
+    <getEmployeeByEmail>
+        SELECT * FROM employees WHERE email = ?;
+    </getEmployeeByEmail>
+</queries>

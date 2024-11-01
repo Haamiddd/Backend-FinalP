@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllLeaveRequests>
+        SELECT * FROM leaverequests;
+    </getAllLeaveRequests>
+
+    <getLeaveRequestById>
+        SELECT * FROM leaverequests WHERE leave_id = ?;
+    </getLeaveRequestById>
+
+    <createLeaveRequest>
+        INSERT INTO leaverequests (employee_id, start_date, end_date, leave_type, status, reason)
+        VALUES (?, ?, ?, ?, ?, ?);
+    </createLeaveRequest>
+
+    <updateLeaveRequestStatus>
+        UPDATE leaverequests SET status = ? WHERE leave_id = ?;
+    </updateLeaveRequestStatus>
+
+    <updateLeaveRequest>
+        UPDATE leaverequests 
+        SET start_date = ?, end_date = ?, leave_type = ?, reason = ? 
+        WHERE leave_id = ?;
+    </updateLeaveRequest>
+
+    <deleteLeaveRequest>
+        DELETE FROM leaverequests WHERE leave_id = ?;
+    </deleteLeaveRequest>
+</queries>

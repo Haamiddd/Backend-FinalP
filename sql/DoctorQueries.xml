@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllDoctors>
+        SELECT * FROM doctors
+    </getAllDoctors>
+
+    <getDoctorById>
+        SELECT * FROM doctors WHERE doctor_id = ?
+    </getDoctorById>
+
+    <getDoctorByEmail>
+        SELECT * FROM doctors WHERE email = ?
+    </getDoctorByEmail>
+
+    <createDoctor>
+        INSERT INTO doctors (name, specialty, bio, years_of_experience, consultation_fee, email, phone, available_from, available_to, password)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    </createDoctor>
+
+    <updateDoctor>
+        UPDATE doctors 
+        SET name = ?, specialty = ?, bio = ?, years_of_experience = ?, consultation_fee = ?, email = ?, phone = ?, available_from = ?, available_to = ?
+        WHERE doctor_id = ?
+    </updateDoctor>
+
+    <deleteDoctor>
+        DELETE FROM doctors WHERE doctor_id = ?
+    </deleteDoctor>
+</queries>

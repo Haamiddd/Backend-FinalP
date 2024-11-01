@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllPrescriptions>
+        SELECT * FROM prescriptions
+    </getAllPrescriptions>
+    
+    <getPrescriptionById>
+        SELECT * FROM prescriptions WHERE prescription_id = ?
+    </getPrescriptionById>
+
+    <createPrescription>
+        INSERT INTO prescriptions (patient_id, doctor_id, medicine_name, dosage, frequency, prescription_date, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    </createPrescription>
+
+    <updatePrescription>
+        UPDATE prescriptions 
+        SET patient_id = ?, doctor_id = ?, medicine_name = ?, dosage = ?, frequency = ?, prescription_date = ?, status = ?
+        WHERE prescription_id = ?
+    </updatePrescription>
+
+    <deletePrescription>
+        DELETE FROM prescriptions WHERE prescription_id = ?
+    </deletePrescription>
+
+    <getPrescriptionsByPatient>
+        SELECT p.prescription_id, p.medicine_name, p.dosage, p.frequency, p.prescription_date, p.status
+        FROM prescriptions p WHERE p.patient_id = ?
+    </getPrescriptionsByPatient>
+</queries>

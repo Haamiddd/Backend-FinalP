@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllAppointments>
+        SELECT 
+            a.appointment_id, 
+            d.name AS doctor_name, 
+            a.appointment_date, 
+            a.appointment_time, 
+            a.payment_amount, 
+            a.status, 
+            a.patient_id 
+        FROM Appointments a
+        JOIN Doctors d ON a.doctor_id = d.doctor_id;
+    </getAllAppointments>
+
+    <getAppointmentById>
+        SELECT * FROM Appointments WHERE appointment_id = ?;
+    </getAppointmentById>
+
+    <createAppointment>
+        INSERT INTO Appointments (patient_id, doctor_id, appointment_date, appointment_time, appointment_type, status, payment_status, payment_amount)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+    </createAppointment>
+
+    <updateAppointment>
+        UPDATE Appointments 
+        SET patient_id = ?, doctor_id = ?, appointment_date = ?, appointment_time = ?, appointment_type = ?, status = ?, payment_status = ?, payment_amount = ?
+        WHERE appointment_id = ?;
+    </updateAppointment>
+
+    <deleteAppointment>
+        DELETE FROM Appointments WHERE appointment_id = ?;
+    </deleteAppointment>
+
+    <getAppointmentsWithDetails>
+        SELECT 
+            a.appointment_id, 
+            p.name AS patient_name, 
+            d.name AS doctor_name, 
+            a.appointment_date, 
+            a.appointment_time, 
+            a.appointment_type, 
+            a.status, 
+            a.payment_status, 
+            a.payment_amount 
+        FROM Appointments a
+        JOIN Patients p ON a.patient_id = p.patient_id
+        JOIN Doctors d ON a.doctor_id = d.doctor_id;
+    </getAppointmentsWithDetails>
+
+    <updateAppointmentStatus>
+        UPDATE Appointments 
+        SET status = ? 
+        WHERE appointment_id = ?;
+    </updateAppointmentStatus>
+
+    <getBookedTimes>
+        SELECT appointment_time 
+        FROM Appointments 
+        WHERE doctor_id = ? 
+        AND appointment_date = ?
+        AND status IN ('Pending', 'Confirmed');
+    </getBookedTimes>
+</queries>

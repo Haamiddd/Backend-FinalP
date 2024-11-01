@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+    <getAllPatients>
+        SELECT * FROM patients;
+    </getAllPatients>
+
+    <getPatientById>
+        SELECT * FROM patients WHERE patient_id = ?;
+    </getPatientById>
+
+    <getPatientByEmail>
+        SELECT * FROM patients WHERE email = ?;
+    </getPatientByEmail>
+
+    <createPatient>
+        INSERT INTO patients (name, email, phone, address, dob, insurance_details, emergency_contact_name, emergency_contact_phone, password)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    </createPatient>
+
+    <updatePatient>
+        UPDATE patients 
+        SET name = ?, email = ?, phone = ?, address = ?, dob = ?, insurance_details = ?, emergency_contact_name = ?, emergency_contact_phone = ?
+        WHERE patient_id = ?;
+    </updatePatient>
+
+    <deletePatient>
+        DELETE FROM patients WHERE patient_id = ?;
+    </deletePatient>
+</queries>
