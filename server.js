@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const revenueRoutes = require('./routes/revenueRoutes');
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,7 @@ app.use('/api', require('./routes/paymentRoutes')); // Use the payment routes un
 app.use('/api', require('./routes/employeeRoutes')); // Use the employee routes under "/api"
 app.use('/api', require('./routes/leaveRoutes')); // Use the leave routes under "/api"
 app.use('/api', require('./routes/prescriptionRoutes')); // Use the prescription routes under "/api"
+app.use('/api', revenueRoutes);
 
 // Only start the server when not in a test environment
 if (process.env.NODE_ENV !== 'test') {

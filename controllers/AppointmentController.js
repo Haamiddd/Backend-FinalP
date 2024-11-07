@@ -50,37 +50,34 @@ class AppointmentController {
       res.status(500).json({ error: err.message });
     }
   }
-// Controller to fetch appointments with patient and doctor details
-async getAppointmentsWithDetails(req, res) {
-  try {
-    const appointments = await appointmentService.getAppointmentsWithDetails();
-    res.json(appointments);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-}
 
-// Controller to update appointment status
-async updateAppointmentStatus(req, res) {
-  try {
-    await appointmentService.updateAppointmentStatus(req.params.appointment_id, req.body.status);
-    res.status(200).json({ message: 'Booking status updated successfully' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  async getAppointmentsWithDetails(req, res) {
+    try {
+      const appointments = await appointmentService.getAppointmentsWithDetails();
+      res.json(appointments);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   }
-}
 
-// Controller for fetching booked times
- // API to get booked times for a doctor on a specific date
- async getBookedTimes(req, res) {
-  const { doctor_id, appointment_date } = req.query;
-  try {
-      const bookedTimes = await AppointmentService.getBookedTimes(doctor_id, appointment_date);
-      res.status(200).json(bookedTimes);
-  } catch (error) {
-      res.status(500).json({ error: 'Error fetching booked times' });
+  async updateAppointmentStatus(req, res) {
+    try {
+      await appointmentService.updateAppointmentStatus(req.params.appointment_id, req.body.status);
+      res.status(200).json({ message: 'Booking status updated successfully' });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
   }
+
+  async getBookedTimes(req, res) {
+    const { doctor_id, appointment_date } = req.query;
+    try {
+        const bookedTimes = await appointmentService.getBookedTimes(doctor_id, appointment_date);
+        res.status(200).json(bookedTimes);
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching booked times' });
+    }
 }
 }
 
-module.exports = new AppointmentController();
+module.exports = new AppointmentController();  
